@@ -54,6 +54,8 @@ modules:
     make-args:
       - NO_TCLTK=1
       - NO_GETTEXT=1
+    make-install-args:
+      - NO_INSTALL_HARDLINKS=1
     sources:
       - type: archive
         url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.48.1.tar.xz
@@ -76,6 +78,7 @@ modules:
         sha256: d2788f892571058c08d27095c22154579dfefb807ebe357d145ab2ddddefb1a6
     cleanup:
     - /share/doc
+    - /man
 
   # Volk (Vulkan meta-loader, required by vulkan-tools)
   - name: volk
