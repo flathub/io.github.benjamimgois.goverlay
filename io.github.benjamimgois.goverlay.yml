@@ -54,6 +54,8 @@ modules:
     make-args:
       - NO_TCLTK=1
       - NO_GETTEXT=1
+    make-install-args:
+      - NO_INSTALL_HARDLINKS=1
     sources:
       - type: archive
         url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.48.1.tar.xz
