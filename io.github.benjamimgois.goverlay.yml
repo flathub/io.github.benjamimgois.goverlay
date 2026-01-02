@@ -26,9 +26,6 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
 
-  # Allow flatpak-spawn to check for runtimes
-  - --talk-name=org.freedesktop.Flatpak
-
 cleanup:
   - /include
   - /lib/pkgconfig
