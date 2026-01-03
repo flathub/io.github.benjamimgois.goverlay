@@ -13,8 +13,8 @@ finish-args:
   - --device=dri
 
   # File access
-  - --filesystem=xdg-config/MangoHud:create
-  - --filesystem=xdg-config/vkBasalt:create
+  - --filesystem=xdg-config/MangoHud:rw
+  - --filesystem=xdg-config/vkBasalt:rw
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
   - --persist=fgmod
 
