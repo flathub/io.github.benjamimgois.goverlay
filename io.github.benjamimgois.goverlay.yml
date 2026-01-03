@@ -26,6 +26,9 @@ finish-args:
   - --socket=wayland
   - --socket=fallback-x11
 
+  # Desktop notifications
+  - --talk-name=org.freedesktop.Notifications
+
 cleanup:
   - /include
   - /lib/pkgconfig
@@ -125,8 +128,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.6.9
-        commit: a95dbfb0f8fc166978a6aadb2b682e3ae1a1d259
+        tag: 1.6.10
+        commit: c6ecc95abf5f4c36f93520d904ee6c7d00ce40e0
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
