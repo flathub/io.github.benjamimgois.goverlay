@@ -13,8 +13,8 @@ finish-args:
   - --device=dri
 
   # File access
-  - --filesystem=xdg-config/MangoHud:rw
-  - --filesystem=xdg-config/vkBasalt:rw
+  - --filesystem=xdg-config/MangoHud:create
+  - --filesystem=xdg-config/vkBasalt:create
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
   - --persist=fgmod
 
@@ -25,6 +25,9 @@ finish-args:
   - --share=ipc
   - --socket=wayland
   - --socket=fallback-x11
+
+  # Desktop notifications
+  - --talk-name=org.freedesktop.Notifications
 
 cleanup:
   - /include
@@ -125,8 +128,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.6.9
-        commit: a95dbfb0f8fc166978a6aadb2b682e3ae1a1d259
+        tag: 1.6.10
+        commit: 45e5d1f16a43cf2aa4258ca4f70ae0863cda9f63
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
