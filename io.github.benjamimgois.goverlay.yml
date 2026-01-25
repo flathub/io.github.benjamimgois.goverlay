@@ -12,12 +12,12 @@ finish-args:
   # GPU access for Vulkan/OpenGL overlays
   - --device=dri
 
-  # File access
-  - --filesystem=xdg-config/MangoHud:rw
-  - --filesystem=xdg-config/vkBasalt:rw
+  # File access - use :create to allow creating directories if they don't exist
+  - --filesystem=xdg-config/MangoHud:create
+  - --filesystem=xdg-config/vkBasalt:create
+  - --filesystem=xdg-data/goverlay:create
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
-  - --persist=fgmod
-
+  
   # Network access for downloads (OptiScaler, ReShade shaders, updates)
   - --share=network
 
@@ -57,8 +57,6 @@ modules:
     make-args:
       - NO_TCLTK=1
       - NO_GETTEXT=1
-    make-install-args:
-      - NO_INSTALL_HARDLINKS=1
     sources:
       - type: archive
         url: https://mirrors.edge.kernel.org/pub/software/scm/git/git-2.48.1.tar.xz
@@ -81,7 +79,6 @@ modules:
         sha256: d2788f892571058c08d27095c22154579dfefb807ebe357d145ab2ddddefb1a6
     cleanup:
     - /share/doc
-    - /man
 
   # Volk (Vulkan meta-loader, required by vulkan-tools)
   - name: volk
@@ -128,8 +125,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.7.1
-        commit: 32c7b037f170b1b992539319373b0fec6c9a593d
+        tag: 1.7.2
+        commit: 5685b02cdf96658fde017da373caa885e3691c3e
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
