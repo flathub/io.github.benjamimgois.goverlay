@@ -16,9 +16,6 @@ finish-args:
   - --filesystem=xdg-config/MangoHud:rw
   - --filesystem=xdg-config/vkBasalt:rw
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
-  # Read-only access to Steam paths for Windows version detection in protontricks
-  - --filesystem=~/.steam:ro
-  - --filesystem=~/.local/share/Steam:ro
   
   # Network access for downloads (OptiScaler, ReShade shaders, updates)
   - --share=network
@@ -31,8 +28,6 @@ finish-args:
   # Desktop notifications
   - --talk-name=org.freedesktop.Notifications
   
-  # Flatpak-spawn for protontricks
-  - --talk-name=org.freedesktop.Flatpak
 
 cleanup:
   - /include
@@ -131,7 +126,7 @@ modules:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
         tag: 1.7.5
-        commit: 2f76dd1cec598fa3afff8a3409d55a4ee84fb662
+        commit: 8ae41088418233a89688313f645a38a5586ac1e8
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
