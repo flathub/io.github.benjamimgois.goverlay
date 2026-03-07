@@ -27,6 +27,7 @@ finish-args:
 
   # Desktop notifications
   - --talk-name=org.freedesktop.Notifications
+  
 
 cleanup:
   - /include
@@ -124,8 +125,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.7.4
-        commit: 4136509420149b945ee76c52820af64ec55df42a
+        tag: 1.7.5
+        commit: 8ae41088418233a89688313f645a38a5586ac1e8
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
