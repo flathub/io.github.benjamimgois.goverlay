@@ -15,7 +15,12 @@ finish-args:
   # File access - use :create to allow creating directories if they don't exist
   - --filesystem=xdg-config/MangoHud:rw
   - --filesystem=xdg-config/vkBasalt:rw
+  - --filesystem=~/.local/share/Steam:ro
+  - --filesystem=~/.steam:ro
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
+  # Additional Steam libraries on secondary drives
+  - --filesystem=/mnt:ro
+  - --filesystem=/media:ro
   
   # Network access for downloads (OptiScaler, ReShade shaders, updates)
   - --share=network
@@ -125,8 +130,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.7.5
-        commit: 8ae41088418233a89688313f645a38a5586ac1e8
+        tag: 1.8.1
+        commit: 0d0d9de6f1ebc55647ae5b30dc27c3e02ce632d4
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
