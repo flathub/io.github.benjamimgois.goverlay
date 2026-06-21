@@ -15,6 +15,7 @@ finish-args:
   # File access - use :create to allow creating directories if they don't exist
   - --filesystem=xdg-config/MangoHud:rw
   - --filesystem=xdg-config/vkBasalt:rw
+  - --filesystem=xdg-config/vkSumi:rw
   - --filesystem=~/.local/share/Steam:ro
   - --filesystem=~/.steam:ro
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
@@ -130,8 +131,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.8.2
-        commit: bfe87a60732c30ecc5cb733fae1f0ee2f4ba5780
+        tag: 1.8.4
+        commit: b4ea99e75c41cae18c8dc3f1cccbb86caacef3da
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
@@ -148,14 +149,17 @@ modules:
         make LAZBUILDOPTS="--lazarusdir=$LAZARUSDIR --compiler=$FPC"
       - make install prefix=/app
       - |
-        # Install fgmod script as a Flatpak command
-        install -Dm755 data/fgmod/fgmod /app/bin/fgmod
-        # Install fgmod data files to shared data directory
-        mkdir -p /app/share/goverlay/fgmod
-        cp -r data/fgmod/* /app/share/goverlay/fgmod/
-      - |
+        # Install bgmod binary as a Flatpak command
+        install -Dm755 data/bgmod/bgmod /app/bin/bgmod
+        # Install bgmod data files to shared data directory
+        mkdir -p /app/share/goverlay/bgmod
+        cp -r data/bgmod/* /app/share/goverlay/bgmod/
         # Create directories for Vulkan layer extensions
         mkdir -p /app/lib/extensions/vulkan/MangoHud
         mkdir -p /app/lib/extensions/vulkan/vkBasalt
+        mkdir -p /app/lib/extensions/vulkan/vkSumi
         # Install metainfo
         install -Dm644 data/${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo
+        # Create a convenience symlink so pascube can find assets at /app/assets/
+        # (pascube resolves: dirname(ParamStr(0))/../assets = /app/libexec/../assets = /app/assets)
+        ln -sf /app/share/goverlay/assets /app/assets
