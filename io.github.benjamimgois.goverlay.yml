@@ -131,8 +131,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.8.8
-        commit: 44e3525c861418f62c835268f517f7e3e78d7c26
+        tag: 1.8.9
+        commit: 4eadc29ec758b6ce9f5949a31b4bee2dd7ff4772
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
