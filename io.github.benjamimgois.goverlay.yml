@@ -16,14 +16,14 @@ finish-args:
   - --filesystem=xdg-config/MangoHud:rw
   - --filesystem=xdg-config/vkBasalt:rw
   - --filesystem=xdg-config/vkSumi:rw
-  - --filesystem=~/.local/share/Steam:ro
-  - --filesystem=~/.steam:ro
+  - --filesystem=~/.local/share/Steam:rw
+  - --filesystem=~/.steam:rw
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
   # Additional Steam libraries on secondary drives
   - --filesystem=/mnt:ro
   - --filesystem=/media:ro
   - --filesystem=/run/media:ro
-  
+
   # Network access for downloads (OptiScaler, ReShade shaders, updates)
   - --share=network
 
@@ -34,7 +34,7 @@ finish-args:
 
   # Desktop notifications
   - --talk-name=org.freedesktop.Notifications
-  
+
 
 cleanup:
   - /include
@@ -126,14 +126,23 @@ modules:
         sha256: 1423d58a1171611d5aba2bf6f8c69c72ef9c38a0aca12c3493e4fda64c9b2dc6
     cleanup:
     - "*"
+  # Nerd Fonts Symbols (for sidebar and game card icons)
+  - name: nerd-fonts-symbols
+    buildsystem: simple
+    build-commands:
+      - install -Dm644 SymbolsNerdFont-Regular.ttf /app/share/fonts/TTF/SymbolsNerdFont-Regular.ttf
+    sources:
+      - type: archive
+        url: https://github.com/ryanoasis/nerd-fonts/releases/download/v3.3.0/NerdFontsSymbolsOnly.zip
+        sha256: 2078603c1e7a2fc2fa9e625ba1c30264d5d7c39907813d89beaa373f73a3a340
   # Goverlay application
   - name: goverlay
     buildsystem: simple
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.8.10
-        commit: 9255f0308f30f22deb123a894b0f8cef13c3565a
+        tag: 1.9.0
+        commit: dcafa7ab51106b0119fe9f15f2db19ab8d1c4f5b
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
