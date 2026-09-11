@@ -153,7 +153,7 @@ modules:
         sha256: 1423d58a1171611d5aba2bf6f8c69c72ef9c38a0aca12c3493e4fda64c9b2dc6
     cleanup:
     - "*"
-  # Nerd Fonts Symbols (for sidebar and game card icons)
+  # Nerd Fonts Symbols (for sidebar and game card icons).
   - name: nerd-fonts-symbols
     buildsystem: simple
     build-commands:
