@@ -42,7 +42,6 @@ finish-args:
   - --filesystem=xdg-config/vkBasalt:rw
   - --filesystem=xdg-config/vkSumi:rw
   - --filesystem=xdg-config/lsfg-vk:create
-  - --filesystem=xdg-data/vulkan:create
   - --filesystem=~/.local/share/Steam:ro
   - --filesystem=~/.steam:ro
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
@@ -168,8 +167,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.9.1
-        commit: 536685bff3d88a65dec5b1a1e0194ab9afbe1ec1
+        tag: 1.9.2
+        commit: 34d4e5fcc2bb1f7db6db3a59b798a226b28177f8
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
