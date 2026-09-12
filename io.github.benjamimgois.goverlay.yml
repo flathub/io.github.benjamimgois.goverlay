@@ -1,12 +1,37 @@
 app-id: io.github.benjamimgois.goverlay
 runtime: org.kde.Platform
-runtime-version: "6.10"
+runtime-version: "6.11"
 sdk: org.kde.Sdk
 sdk-extensions:
   - org.freedesktop.Sdk.Extension.freepascal
 base: io.qt.qtwebengine.BaseApp
-base-version: "6.10"
+base-version: "6.11"
 command: goverlay
+
+add-extensions:
+  org.freedesktop.Platform.VulkanLayer.MangoHud:
+    directory: lib/extensions/vulkan/MangoHud
+    version: '25.08'
+    add-ld-path: lib
+    subdirectories: true
+    no-autodownload: false
+    autodownload: true
+
+  org.freedesktop.Platform.VulkanLayer.vkBasalt:
+    directory: lib/extensions/vulkan/vkBasalt
+    version: '25.08'
+    add-ld-path: lib
+    subdirectories: true
+    no-autodownload: false
+    autodownload: true
+
+  org.freedesktop.Platform.VulkanLayer.lsfgvk:
+    directory: lib/extensions/vulkan/lsfgvk
+    version: '25.08'
+    add-ld-path: lib
+    subdirectories: true
+    no-autodownload: false
+    autodownload: true
 
 finish-args:
   # GPU access for Vulkan/OpenGL overlays
@@ -16,14 +41,15 @@ finish-args:
   - --filesystem=xdg-config/MangoHud:rw
   - --filesystem=xdg-config/vkBasalt:rw
   - --filesystem=xdg-config/vkSumi:rw
-  - --filesystem=~/.local/share/Steam:rw
-  - --filesystem=~/.steam:rw
+  - --filesystem=xdg-config/lsfg-vk:create
+  - --filesystem=~/.local/share/Steam:ro
+  - --filesystem=~/.steam:ro
   - --filesystem=~/.var/app/com.valvesoftware.Steam:rw
   # Additional Steam libraries on secondary drives
   - --filesystem=/mnt:ro
   - --filesystem=/media:ro
   - --filesystem=/run/media:ro
-
+  
   # Network access for downloads (OptiScaler, ReShade shaders, updates)
   - --share=network
 
@@ -34,7 +60,7 @@ finish-args:
 
   # Desktop notifications
   - --talk-name=org.freedesktop.Notifications
-
+  
 
 cleanup:
   - /include
@@ -126,7 +152,7 @@ modules:
         sha256: 1423d58a1171611d5aba2bf6f8c69c72ef9c38a0aca12c3493e4fda64c9b2dc6
     cleanup:
     - "*"
-  # Nerd Fonts Symbols (for sidebar and game card icons)
+  # Nerd Fonts Symbols (for sidebar and game card icons).
   - name: nerd-fonts-symbols
     buildsystem: simple
     build-commands:
@@ -141,8 +167,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/benjamimgois/goverlay.git
-        tag: 1.9.0
-        commit: dcafa7ab51106b0119fe9f15f2db19ab8d1c4f5b
+        tag: 1.9.2
+        commit: 0cca0dbfd76f955691329b5a22a740cd8b38c869
     build-commands:
       - |
         # Use Flatpak-compatible launcher script
@@ -168,6 +194,7 @@ modules:
         mkdir -p /app/lib/extensions/vulkan/MangoHud
         mkdir -p /app/lib/extensions/vulkan/vkBasalt
         mkdir -p /app/lib/extensions/vulkan/vkSumi
+        mkdir -p /app/lib/extensions/vulkan/lsfgvk
         # Install metainfo
         install -Dm644 data/${FLATPAK_ID}.metainfo.xml -t /app/share/metainfo
         # Create a convenience symlink so pascube can find assets at /app/assets/
